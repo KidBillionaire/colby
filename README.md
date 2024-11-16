@@ -1,1 +1,2 @@
 # colby
+# vite-template
