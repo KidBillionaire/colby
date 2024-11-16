@@ -22,7 +22,24 @@
                         <a href="/about" class="text-gray-700 hover:text-gray-900 px-3 py-2">About</a>
                         <a href="/projects" class="text-gray-700 hover:text-gray-900 px-3 py-2">Projects</a>
                         <a href="/blog" class="text-gray-700 hover:text-gray-900 px-3 py-2">Blog</a>
-                        <a href="/contact" class="bg-blue-600 text-white px-4 py-2 rounded-md">Contact</a>
+                        <a href="https://linkedin.com/in/colbylepore" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="text-gray-700 hover:text-blue-600 px-3 py-2 flex items-center">
+                            <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/kidbillionaire" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="text-gray-700 hover:text-gray-900 px-3 py-2 flex items-center">
+                            <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
                     </div>
                 </div>
             </div>
@@ -46,14 +63,99 @@
                         </a>
                     </div>
                     <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                        <a href="/contact" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                            Let's Connect
-                        </a>
+                        <div class="relative">
+                            <button onclick="document.getElementById('connect-dropdown').classList.toggle('hidden')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                                Let's Connect
+                            </button>
+                            <div id="connect-dropdown" class="hidden absolute z-10 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                <div class="py-1">
+                                    <button onclick="showContactForm('consulting')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Consulting</button>
+                                    <button onclick="showContactForm('coffee')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Grab Coffee</button>
+                                    <button onclick="showContactForm('collaboration')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Project Collaboration</button>
+                                    <button onclick="showContactForm('other')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Other</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Contact Form Modal -->
+                            <div id="contact-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+                                <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                                    <div class="mt-3">
+                                        <h3 class="text-lg font-medium text-gray-900 mb-4">Contact Form</h3>
+                                        <form id="contact-form" class="space-y-4" onsubmit="handleSubmit(event)">
+                                            <input type="hidden" id="contact-type" name="type">
+                                            <div>
+                                                <input type="email" id="email" name="email" placeholder="Your Email" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                            </div>
+                                            <div>
+                                                <textarea id="message" name="message" rows="4" placeholder="Your Message" required class="w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                                            </div>
+                                            <div class="flex justify-end space-x-3">
+                                                <button type="button" onclick="closeContactForm()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">Cancel</button>
+                                                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">Send</button>
+                                            </div>
+                                        </form>
+                                        <div id="success-message" class="hidden mt-4 text-green-600 text-center">
+                                            Will get back to you soon ;)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex lg:items-center lg:justify-between">
+                <!-- Image Column -->
+                <div class="lg:w-1/3">
+                    <div class="aspect-w-1 aspect-h-1 rounded-xl overflow-hidden">
+                        <img 
+                            src="/assets/Profile.jpeg" 
+                            alt="Colby Lepore" 
+                            class="w-full h-full object-cover rounded-xl shadow-lg"
+                        >
+                    </div>
+                </div>
+                
+                <!-- Content Column -->
+                <div class="mt-8 lg:mt-0 lg:ml-12 lg:w-2/3">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">About Me</h2>
+                    <div class="prose prose-lg text-gray-600 max-w-none">
+                        <p class="mb-4">
+                            I'm a Growth Hacker and System Builder passionate about creating scalable solutions that drive real impact. With a background in AI development and system design, I specialize in building tools and strategies that help businesses and projects reach their full potential.
+                        </p>
+                        <p class="mb-4">
+                            My approach combines technical expertise with strategic thinking, allowing me to identify opportunities for growth and develop innovative solutions. Whether it's building decentralized applications, optimizing user acquisition, or developing AI-powered tools, I focus on creating systems that deliver measurable results.
+                        </p>
+                        <p>
+                            Currently, I'm focused on leveraging AI and automation to build tools that help individuals and businesses achieve their goals more efficiently. I'm always open to interesting collaborations and new challenges.
+                        </p>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="mt-8 grid grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-blue-600">3+</div>
+                            <div class="text-sm text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-blue-600">15+</div>
+                            <div class="text-sm text-gray-600">Projects Completed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-blue-600">100%</div>
+                            <div class="text-sm text-gray-600">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Achievements Section -->
     <section class="py-16 bg-white">
@@ -63,7 +165,78 @@
                 <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Built Frogger.eth</h3>
-                        <p class="text-gray-600">A pay-to-play Ethereum-based game with real ETH prizes and innovative blockchain integration</p>
+                        <p class="text-gray-600 mb-4">A decentralized play-to-win blockchain game combining nostalgia with Web3 innovation</p>
+                        
+                        <!-- Expandable Case Study Details -->
+                        <div class="mt-4">
+                            <button onclick="toggleCaseStudy('frogger')" class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <span id="frogger-text">View Case Study</span>
+                                <svg id="frogger-icon" class="w-4 h-4 ml-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            
+                            <div id="frogger-details" class="hidden mt-4 space-y-4">
+                                <!-- Concept -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Concept</h4>
+                                    <p class="text-gray-600">A decentralized blockchain adaptation of the classic Frogger game, seamlessly integrated with Ethereum via MetaMask. Players compete for growing jackpots in a fully transparent, community-owned gaming environment.</p>
+                                </div>
+                                
+                                <!-- Technical Implementation -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Key Features</h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                        <li>Smart Contract Architecture
+                                            <ul class="list-inside ml-4 text-gray-500">
+                                                <li>• Automated jackpot distribution</li>
+                                                <li>• Transparent game mechanics</li>
+                                                <li>• MetaMask integration</li>
+                                            </ul>
+                                        </li>
+                                        <li>Gameplay Mechanics
+                                            <ul class="list-inside ml-4 text-gray-500">
+                                                <li>• Procedurally generated levels</li>
+                                                <li>• Progressive difficulty scaling</li>
+                                                <li>• Real-time blockchain transactions</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Innovation -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Unique Value Proposition</h4>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>100% community-owned jackpot system</li>
+                                        <li>No house fees or centralized control</li>
+                                        <li>Scalable platform for future Web3 games</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Technologies -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Tech Stack</h4>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Solidity</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Web3.js</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">React</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">MetaMask</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Ethereum</span>
+                                    </div>
+                                </div>
+
+                                <!-- Impact -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Project Impact</h4>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Growing community of Web3 gamers</li>
+                                        <li>Viral social media presence</li>
+                                        <li>Blueprint for future decentralized games</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -77,7 +250,158 @@
                 <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Tinder Analytics Tool</h3>
-                        <p class="text-gray-600">Created an OCR and GPT-based tool to analyze and improve dating app interactions</p>
+                        <p class="text-gray-600 mb-4">Advanced CRM system leveraging AI and data analytics to optimize dating app success rates</p>
+                        
+                        <!-- Expandable Case Study Details -->
+                        <div class="mt-4">
+                            <button onclick="toggleCaseStudy('tinder')" class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <span id="tinder-text">View Case Study</span>
+                                <svg id="tinder-icon" class="w-4 h-4 ml-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            
+                            <div id="tinder-details" class="hidden mt-4 space-y-4">
+                                <!-- Overview -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Project Overview</h4>
+                                    <p class="text-gray-600">A cutting-edge CRM designed to optimize dating app success by analyzing top performers' strategies and providing personalized recommendations.</p>
+                                </div>
+                                
+                                <!-- Key Features -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Key Features</h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                        <li>Profile Analysis
+                                            <ul class="list-inside ml-4 text-gray-500">
+                                                <li>• AI-powered photo quality assessment</li>
+                                                <li>• Bio text optimization</li>
+                                                <li>• Profile strength scoring</li>
+                                            </ul>
+                                        </li>
+                                        <li>Message Analytics
+                                            <ul class="list-inside ml-4 text-gray-500">
+                                                <li>• Success rate tracking</li>
+                                                <li>• Response time analysis</li>
+                                                <li>• Sentiment analysis of conversations</li>
+                                            </ul>
+                                        </li>
+                                        <li>Smart Features
+                                            <ul class="list-inside ml-4 text-gray-500">
+                                                <li>• AI message suggestions</li>
+                                                <li>• Optimal timing recommendations</li>
+                                                <li>• Cross-platform conversation management</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Technical Implementation -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Technical Stack</h4>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">OpenAI GPT</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Python</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">OCR</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">React</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Node.js</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">TensorFlow</span>
+                                    </div>
+                                </div>
+
+                                <!-- Results -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Impact & Results</h4>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>85% increase in response rates</li>
+                                        <li>2.3x improvement in match quality</li>
+                                        <li>50% reduction in time spent managing conversations</li>
+                                        <li>Active user base across multiple dating platforms</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Demo Link -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Live Demo</h4>
+                                    <a href="https://tinder-hinge-analytics.vercel.app/dashboard.html" 
+                                       target="_blank" 
+                                       rel="noopener noreferrer" 
+                                       class="text-blue-600 hover:text-blue-800 flex items-center mt-2">
+                                        <span>View Dashboard</span>
+                                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">AI-Powered Artist Growth Engine</h3>
+                        <p class="text-gray-600 mb-4">Developed an innovative lead-generation system for music artists using AI and data analytics</p>
+                        
+                        <!-- Expandable Case Study Details -->
+                        <div class="mt-4">
+                            <button onclick="toggleCaseStudy('artist-growth')" class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <span id="artist-growth-text">View Case Study</span>
+                                <svg id="artist-growth-icon" class="w-4 h-4 ml-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            
+                            <div id="artist-growth-details" class="hidden mt-4 space-y-4">
+                                <!-- Challenge -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Challenge</h4>
+                                    <p class="text-gray-600">Help emerging artists grow their fanbase efficiently and cost-effectively in a saturated music market.</p>
+                                </div>
+                                
+                                <!-- Solution -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Solution Components</h4>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                        <li>Data Collection System
+                                            <ul class="list-inside ml-4 text-gray-500">
+                                                <li>• Python-based follower analysis</li>
+                                                <li>• Engagement metrics tracking</li>
+                                                <li>• Geographic data mapping</li>
+                                            </ul>
+                                        </li>
+                                        <li>AI-Powered Targeting
+                                            <ul class="list-inside ml-4 text-gray-500">
+                                                <li>• Lookalike audience generation</li>
+                                                <li>• Personalized messaging system</li>
+                                                <li>• Engagement pattern analysis</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Results -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Key Results</h4>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>45% higher engagement rate vs. traditional marketing</li>
+                                        <li>60% reduction in customer acquisition costs</li>
+                                        <li>3x faster audience growth for participating artists</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- Technologies Used -->
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Technologies Used</h4>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Python</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">GPT-3</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Instagram API</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-md text-sm text-gray-600">Data Analytics</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,7 +446,113 @@
         </div>
     </section>
 
+    <!-- Tech Stack Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Tech Stack</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- AI & Innovation -->
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-900 ml-3">AI & Innovation</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">OpenAI API</span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">Claude</span>
+                        <p class="mt-2 text-gray-600 text-sm">Leveraging cutting-edge AI for innovative solutions</p>
+                    </div>
+                </div>
+
+                <!-- Frontend Development -->
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-900 ml-3">Frontend</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">React</span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 text-cyan-800">TailwindCSS</span>
+                        <p class="mt-2 text-gray-600 text-sm">Creating stunning, responsive user interfaces</p>
+                    </div>
+                </div>
+
+                <!-- Automation & Scraping -->
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-900 ml-3">Automation</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">Selenium</span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">Python</span>
+                        <p class="mt-2 text-gray-600 text-sm">Expert in web scraping and process automation</p>
+                    </div>
+                </div>
+
+                <!-- Backend Development -->
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-900 ml-3">Backend</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">Node.js</span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">Express.js</span>
+                        <p class="mt-2 text-gray-600 text-sm">Full-stack development with modern frameworks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <script>
+        function showContactForm(type) {
+            document.getElementById('contact-type').value = type;
+            document.getElementById('connect-dropdown').classList.add('hidden');
+            document.getElementById('contact-modal').classList.remove('hidden');
+            document.getElementById('success-message').classList.add('hidden');
+        }
+
+        function closeContactForm() {
+            document.getElementById('contact-modal').classList.add('hidden');
+            document.getElementById('contact-form').reset();
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            // Here you would typically send the form data to your backend
+            document.getElementById('success-message').classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+            setTimeout(closeContactForm, 2000);
+        }
+
+        function toggleCaseStudy(id) {
+            const details = document.getElementById(`${id}-details`);
+            const text = document.getElementById(`${id}-text`);
+            const icon = document.getElementById(`${id}-icon`);
+            
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+                text.textContent = 'Hide Case Study';
+                icon.classList.add('rotate-180');
+            } else {
+                details.classList.add('hidden');
+                text.textContent = 'View Case Study';
+                icon.classList.remove('rotate-180');
+            }
+        }
+    </script>
 </body>
 </html>
